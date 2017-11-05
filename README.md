@@ -37,3 +37,6 @@ HowToPackageCythonAndCppFuncs
 ├── install.sh                        # simple script to install the package through pip using the setup.py file
 └── setup.py                          # setup file importing the cython generated .c (and .cpp) files from sub-directories and building them as external modules
 ```
+
+If in setting up your package you get the error message `ImportError: dynamic module does not define module export function (PyInit_<nameofcythoncode>)` it is because the name of your extension in your package setup.py (and therefore your generated .so file) must match the name of your extension given in the cython setup.py file. This is because the cython build generates various functions, including a function `PyInit_<nameofcythoncode>`, which tells python how to initise the C extension and communicate with it.
+	
